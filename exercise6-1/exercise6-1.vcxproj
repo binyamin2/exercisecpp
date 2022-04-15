@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{fd6a3cf0-cbc1-49f5-ad45-f297042b9e8c}</ProjectGuid>
-    <RootNamespace>exercise</RootNamespace>
+    <ProjectGuid>{45713fc2-17d3-4c63-8abe-760c91ef5479}</ProjectGuid>
+    <RootNamespace>exercise61</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>exercise6</ProjectName>
+    <ProjectName>exercise6-2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,15 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Employee.h" />
-    <ClInclude Include="FullTime.h" />
-    <ClInclude Include="PartTime.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="RoundList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="FullTime.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PartTime.cpp" />
+    <ClCompile Include="RoundList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
