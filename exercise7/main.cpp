@@ -24,7 +24,25 @@ int main() {
 
 	int numShapes, choice;
 	cout << "How many shapes you would like to define?\n";
-	cin >> numShapes;
+	char temp;//for check if they inside number and not char
+	cin >> temp;
+	try
+	{
+		if (temp < '0' || temp > '9')//if not numbers
+		{
+			throw "the option is only numbers";
+		}
+	}
+	catch (const char* str)
+	{
+		while (temp < '0' || temp > '9')
+		{
+			cout << str << endl;
+			cin >> temp;
+		}
+	}
+
+	numShapes = temp - '0';//the char - '0' = the current number
 	Shape** shapes = new Shape * [numShapes];
 	for (int i = 0; i < numShapes; i++) {
 		try//for check if radius <= 0
