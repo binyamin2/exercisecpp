@@ -28,6 +28,10 @@ public:
 	void preOrder() { preOrder(root); }
 	void inOrder() { inOrder(root); }
 	void postOrder() { postOrder(root); }
+	int height() { height(root); }
+	void reflect() { reflect(root); }
+	void breadthScan() { breadthScan(root); }
+
 	virtual void process(T val) { cout << val << " "; }
 	virtual void add(T val) = 0;
 	virtual bool search(T val) = 0;
@@ -37,6 +41,9 @@ private:
 	void preOrder(Node* current);
 	void inOrder(Node* current);
 	void postOrder(Node* current);
+	int height(Node* current);
+	void reflect(Node* current);
+	void breadthScan(Node* current);
 };
 
 
@@ -101,5 +108,58 @@ void Tree<T>::inOrder(class Tree<T>::Node* current)
 		inOrder(current->right);
 	}
 }
+int maxi(int t1, int t2)
+{
+	if (t1 > t2)
+		return t1;
+	else
+		return t2;
+}
 
+template <class T>
+int Tree<T>::height(Node* current)
+{
+	if (current == nullptr)
+		return -1;
 
+	else
+		return maxi(height(current->left), height(current->right)) + 1;
+}
+
+template <class T>
+void Tree<T>::reflect(Node* current)
+{
+	Node* temp = current->left;
+	current->left = current->right;
+	current->right = temp;
+}
+
+template <class T>
+void Tree<T>:: breadthScan ( Node* current)
+{
+	// Base Case
+	if (root == NULL)
+		return;
+
+	// Create an empty queue for level order traversal
+	QueueVector<Node*> q;
+
+	// Enqueue Root and initialize height
+	q.enqueue(root);
+
+	while (q.isEmpty() == false)
+	{
+		// Print front of queue and remove it from queue
+		Node* tempn = q.front();
+		cout << tempn->value << " ";
+		q.dequeue();
+
+		/* Enqueue left child */
+		if (tempn->left != NULL)
+			q.enqueue(tempn->left);
+
+		/*Enqueue right child */
+		if (tempn->right != NULL)
+			q.enqueue(tempn->right);
+	}
+}
