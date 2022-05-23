@@ -5,7 +5,7 @@ template <class T>
 class QueueVector : public Queue<T>
 {
 public:
-	QueueVector(T max);
+	QueueVector(int max);
 	//QueueVector(const QueueVector&);
 	void clear() override;
 	T dequeue() override;
@@ -20,7 +20,7 @@ private:
 };
 
 template <class T>
-QueueVector<T> ::QueueVector(T size)
+QueueVector<T> ::QueueVector(int size)
 {
 	capacity = size + 1;
 	data = new T[capacity];

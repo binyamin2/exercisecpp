@@ -1,5 +1,5 @@
 #pragma once
-
+#include "QueueVector.h"
 #include <iostream>
 using namespace std;
 
@@ -131,14 +131,12 @@ void Tree<T>::reflect(Node* current)
 {
 	if (current==nullptr)
 		return
-	else
-	{
-		reflect(current->left);
-		reflect(current->right);
-		Node* temp = current->left;
-		current->left = current->right;
-		current->right = temp;
-	}
+	reflect(current->left);
+	reflect(current->right);
+	Node* temp = current->left;
+	current->left = current->right;
+	current->right = temp;
+	
 }
 
 template <class T>
@@ -149,7 +147,7 @@ void Tree<T>:: breadthScan ( Node* current)
 		return;
 
 	// Create an empty queue for level order traversal
-	QueueVector<Node*> q;
+	QueueVector <Node*> q(50);
 
 	// Enqueue Root and initialize height
 	q.enqueue(root);
