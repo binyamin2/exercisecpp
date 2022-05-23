@@ -19,13 +19,13 @@ public:
 			remove(this->root, value);
 	}
 	T successor(T val);
+	void deleteDuplicates();
 private:
 	void add(class Tree<T>::Node* current, T val);
 	bool search(class Tree<T>::Node* current, T val);
 	void remove(class Tree<T>::Node*& current, T val);
 	typename Tree<T>::Node* min(class Tree<T>::Node* current);
 	typename Tree<T>::Node* searchReturnAddress(class Tree<T>::Node* current, T val);
-	void deleteDuplicates();
 	void process(T val);
 };
 

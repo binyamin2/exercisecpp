@@ -129,9 +129,16 @@ int Tree<T>::height(Node* current)
 template <class T>
 void Tree<T>::reflect(Node* current)
 {
-	Node* temp = current->left;
-	current->left = current->right;
-	current->right = temp;
+	if (current==nullptr)
+		return
+	else
+	{
+		reflect(current->left);
+		reflect(current->right);
+		Node* temp = current->left;
+		current->left = current->right;
+		current->right = temp;
+	}
 }
 
 template <class T>
