@@ -26,7 +26,6 @@ private:
 	void remove(class Tree<T>::Node*& current, T val);
 	typename Tree<T>::Node* min(class Tree<T>::Node* current);
 	typename Tree<T>::Node* searchReturnAddress(class Tree<T>::Node* current, T val);
-	void deleteDuplicates();
 	void process(T val) override;
 };
 
