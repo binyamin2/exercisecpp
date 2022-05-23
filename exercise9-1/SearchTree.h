@@ -19,6 +19,7 @@ public:
 			remove(this->root, value);
 	}
 	T successor(T val);
+	void deleteDuplicates();
 private:
 	void add(class Tree<T>::Node* current, T val);
 	bool search(class Tree<T>::Node* current, T val);
