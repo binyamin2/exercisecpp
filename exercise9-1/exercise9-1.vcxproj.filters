@@ -27,8 +27,10 @@
     <ClInclude Include="QueueVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main1.cpp">
       <Filter>Source Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
 </Project>
