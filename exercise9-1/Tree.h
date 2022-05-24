@@ -37,7 +37,7 @@ public:
 	virtual void add(T val) = 0;
 	virtual bool search(T val) = 0;
 	virtual void remove(T val) = 0;
-private:
+private://
 	void clear(Node* current);
 	void preOrder(Node* current);
 	void inOrder(Node* current);
@@ -48,7 +48,7 @@ private:
 	int maxi(int t1, int t2);
 };
 
-
+//implementation of tree
 template <class T>
 Tree<T>::~Tree() // deallocate tree
 {
@@ -113,7 +113,7 @@ void Tree<T>::inOrder(class Tree<T>::Node* current)
 
 
 template <class T>
-int Tree<T>::height(Node* current)
+int Tree<T>::height(Node* current)//returns the height of the tree
 {
 	if (current == nullptr)
 		return -1;
@@ -122,10 +122,10 @@ int Tree<T>::height(Node* current)
 }
 
 template <class T>
-void Tree<T>::reflect(Node* current)
+void Tree<T>::reflect(Node* current)//reflect every node in the tree 
 {
-	if (current==nullptr)
-		return
+	if (current == nullptr)
+		return;
 	reflect(current->left);
 	reflect(current->right);
 	Node* temp = current->left;
@@ -135,7 +135,7 @@ void Tree<T>::reflect(Node* current)
 }
 
 template <class T>
-void Tree<T>:: breadthScan ( Node* current)
+void Tree<T>:: breadthScan ( Node* current)//breadth scan the tree
 {
 	// Base Case
 	if (root == NULL)
@@ -165,7 +165,7 @@ void Tree<T>:: breadthScan ( Node* current)
 }
 
 template<class T>
-int Tree<T>::maxi(int t1, int t2)
+int Tree<T>::maxi(int t1, int t2)//returns the maximum betwen t1 and t2
 {
 	{
 		if (t1 > t2)

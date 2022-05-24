@@ -18,9 +18,9 @@ private:
 	int nextSlot;
 	int firstUse;
 };
-
+//implementation of queue
 template <class T>
-QueueVector<T> ::QueueVector(int size)
+QueueVector<T> ::QueueVector(int size)//ctor
 {
 	capacity = size + 1;
 	data = new T[capacity];
@@ -28,7 +28,8 @@ QueueVector<T> ::QueueVector(int size)
 }
 
 template <class T>
-void QueueVector<T>::clear() {
+void QueueVector<T>::clear()//clear
+{
 	nextSlot = 0;
 	firstUse = 0;
 }
