@@ -1,6 +1,7 @@
 #pragma once
 #include "QueueVector.h"
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 template <class T>
@@ -28,7 +29,7 @@ public:
 	void preOrder() { preOrder(root); }
 	void inOrder() { inOrder(root); }
 	void postOrder() { postOrder(root); }
-	int height() { height(root); }
+	int height() { return height(root); }
 	void reflect() { reflect(root); }
 	void breadthScan() { breadthScan(root); }
 
@@ -44,6 +45,7 @@ private:
 	int height(Node* current);
 	void reflect(Node* current);
 	void breadthScan(Node* current);
+	int maxi(int t1, int t2);
 };
 
 
@@ -108,22 +110,15 @@ void Tree<T>::inOrder(class Tree<T>::Node* current)
 		inOrder(current->right);
 	}
 }
-int maxi(int t1, int t2)
-{
-	if (t1 > t2)
-		return t1;
-	else
-		return t2;
-}
+
 
 template <class T>
 int Tree<T>::height(Node* current)
 {
 	if (current == nullptr)
 		return -1;
-
 	else
-		return maxi(height(current->left), height(current->right)) + 1;
+		return this->maxi(height(current->left), height(current->right)) + 1;
 }
 
 template <class T>
@@ -167,4 +162,16 @@ void Tree<T>:: breadthScan ( Node* current)
 		if (tempn->right != NULL)
 			q.enqueue(tempn->right);
 	}
+}
+
+template<class T>
+int Tree<T>::maxi(int t1, int t2)
+{
+	{
+		if (t1 > t2)
+			return t1;
+		else
+			return t2;
+	}
+
 }

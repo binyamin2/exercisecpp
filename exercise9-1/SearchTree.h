@@ -11,12 +11,12 @@ public:
 	void add(T value);
 	bool search(T value)
 	{
-		return search(this->root, value);
+		return search(this->Tree<T>::root, value);
 	}
 	void remove(T value)
 	{
-		if (search(this->root, value))
-			remove(this->root, value);
+		if (search(this->Tree<T>::root, value))
+			remove(this->Tree<T>::root, value);
 	}
 	T successor(T val);
 	void deleteDuplicates();
@@ -26,7 +26,8 @@ private:
 	void remove(class Tree<T>::Node*& current, T val);
 	typename Tree<T>::Node* min(class Tree<T>::Node* current);
 	typename Tree<T>::Node* searchReturnAddress(class Tree<T>::Node* current, T val);
-	void process(T val) override;
+	void processST(T val);
+	void inOrderST(class Tree<T>::Node* current);
 };
 
 
@@ -53,16 +54,15 @@ typename Tree<T>::Node* SearchTree<T>::searchReturnAddress(class Tree<T>::Node* 
 	if (current->value == val)
 		return current;
 	if (current->value < val)
-		return search(current->right, val);
+		return searchReturnAddress(current->right, val);
 	else
-		return search(current->left, val);
+		return searchReturnAddress(current->left, val);
 }
 
 template<class T>
 T SearchTree<T>::successor(T val)
 {
 	typename Tree<T>::Node* succ = this->Tree<T>::root;
-	int x;
 	if ( succ->right!= nullptr)
 	{
 		succ = min(succ->right);
@@ -101,7 +101,7 @@ void SearchTree<T>::deleteDuplicates()
 }
 
 template<class T>
-void SearchTree<T>::process(T val)
+void SearchTree<T>::processST(T val)
 {
 	typename Tree<T>::Node* organ = this->searchReturnAddress(Tree<T>::root, val);
 
@@ -115,6 +115,17 @@ void SearchTree<T>::process(T val)
 			second = this->searchReturnAddress(temp, val);
 		}
 	
+	}
+}
+
+template<class T>
+void SearchTree<T>::inOrderST(class Tree<T>::Node* current)
+{
+	if (current)
+	{
+		inOrderST(current->left);
+		processST(current->value);
+		inOrderST(current->right);
 	}
 }
 
@@ -145,13 +156,13 @@ template <class T>
 void SearchTree<T>::add(T val)
 {
 	// Add value to binary search tree 
-	if (!this->root)
+	if (!this->Tree<T>::root)
 	{
-		this->root = new class Tree<T>::Node(val);
-		this->root->parent = nullptr;
+		this->Tree<T>::root = new class Tree<T>::Node(val);
+		this->Tree<T>::root->parent = nullptr;
 		return;
 	}
-	add(this->root, val);
+	add(this->Tree<T>::root, val);
 }
 
 template <class T>
@@ -165,42 +176,43 @@ void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 	}
 	if (find->left == nullptr && find->right == nullptr)
 	{
-		typename Tree<T>::Node* parent1 = find->parent;
 		if (parent1 -> right == find)
 		{
 			delete parent1->right;
+			parent1->right = nullptr;
 		}
 		else
 		{
 			delete parent1->left;
+			parent1->left = nullptr;
 		}
 	}
 	else if (find->left != nullptr && find->right != nullptr)
 	{
 		int x = this->successor(find->value);
-		typename Tree<T>::Node* succ = this->searchReturnAddress(find, x);
+		typename Tree<T>::Node* succ = this->searchReturnAddress(Tree<T>::root,x);
 		find->value = succ->value;
 
-		typename Tree<T>::Node* parent1 = succ->parent;
+		parent1 = succ->parent;
 		if (parent1->right == succ)
 		{
 			delete parent1->right;
+			parent1->right = nullptr;
 		}
 		else
 		{
 			delete parent1->left;
+			parent1->right = nullptr;
 		}
 		
 
 	}
 	else if (find->left != nullptr)
 	{
-		
-
 		if (parent1->left == find)
 		{
 			parent1->left = find->left;
-			delete find;
+			delete find;  
 		}
 		else
 		{
