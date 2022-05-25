@@ -169,6 +169,10 @@ template <class T>
 void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 {
 	typename Tree<T>::Node* find = this->searchReturnAddress(current, val);
+	if (find->parent == nullptr)
+	{
+		//להשלים!!
+	}
 	typename Tree<T>::Node* parent1 = find->parent;
 	if (find == nullptr)
 	{
@@ -212,12 +216,18 @@ void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 		if (parent1->left == find)
 		{
 			parent1->left = find->left;
+			find->left->parent = parent1;
 			delete find;  
+		}
+		else if (parent1->right == find)
+		{
+			parent1->right = find->left;
+			find->left->parent = parent1;
+			delete find;
 		}
 		else
 		{
-			parent1->right = find->left;
-			delete find;
+			throw "ERROR";
 		}
 	}
 	else if (find->right != nullptr)
@@ -225,12 +235,18 @@ void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 		if (parent1->left == find)
 		{
 			parent1->left = find->right;
+			find->right->parent = parent1;
+			delete find;
+		}
+		else if (parent1->right == find)
+		{
+			parent1->right = find->right;
+			find->right->parent = parent1;
 			delete find;
 		}
 		else
 		{
-			parent1->right = find->right;
-			delete find;
+			throw "ERROR";
 		}
 	}
 	
