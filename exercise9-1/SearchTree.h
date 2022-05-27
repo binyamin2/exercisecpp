@@ -169,18 +169,19 @@ template <class T>
 void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 {
 	typename Tree<T>::Node* find = this->searchReturnAddress(current, val);
-	if (find->parent == nullptr)
-	{
-		//להשלים!!
-	}
 	typename Tree<T>::Node* parent1 = find->parent;
 	if (find == nullptr)
 	{
 		throw "the tree not have son with this value";
 	}
-	if (find->left == nullptr && find->right == nullptr)
+	if (find->left == nullptr && find->right == nullptr)//if not have son 
 	{
-		if (parent1 -> right == find)
+		if (find->parent == nullptr)//if find is root
+		{
+			delete find;
+			Tree<T>::root = nullptr;
+		}
+		else if (parent1 -> right == find)
 		{
 			delete parent1->right;
 			parent1->right = nullptr;
@@ -191,62 +192,121 @@ void SearchTree<T>::remove(class Tree<T>::Node*& current, T val)
 			parent1->left = nullptr;
 		}
 	}
-	else if (find->left != nullptr && find->right != nullptr)
+	else if (find->left != nullptr && find->right != nullptr)//if have two son
 	{
 		int x = this->successor(find->value);
 		typename Tree<T>::Node* succ = this->searchReturnAddress(Tree<T>::root,x);
 		find->value = succ->value;
 
 		parent1 = succ->parent;
-		if (parent1->right == succ)
+		if (parent1 == nullptr)//if the succ is root 
 		{
-			delete parent1->right;
-			parent1->right = nullptr;
+			if (Tree<T>::root->right == succ)
+			{
+				delete Tree<T>::root->right;
+				Tree<T>::root->right = nullptr;
+			}
+			else if (Tree<T>::root->left == succ)
+			{
+				delete Tree<T>::root->left;
+				Tree<T>::root->left = nullptr;
+			}
 		}
 		else
 		{
-			delete parent1->left;
-			parent1->right = nullptr;
+			if (parent1->right == succ)
+			{
+				delete parent1->right;
+				parent1->right = nullptr;
+			}
+			else
+			{
+				delete parent1->left;
+				parent1->right = nullptr;
+			}
 		}
-		
 
 	}
-	else if (find->left != nullptr)
+	else if (find->left != nullptr)//if have one son left
 	{
-		if (parent1->left == find)
+		if (parent1 == nullptr)//if find is root
 		{
-			parent1->left = find->left;
-			find->left->parent = parent1;
-			delete find;  
-		}
-		else if (parent1->right == find)
-		{
-			parent1->right = find->left;
-			find->left->parent = parent1;
-			delete find;
+			if (Tree<T>::root->left == find)
+			{
+				Tree<T>::root->left = find->left;
+				find->left->parent = Tree<T>::root;
+				delete find;
+			}
+			else if (Tree<T>::root->right == find)
+			{
+				Tree<T>::root->right = find->left;
+				find->left->parent = Tree<T>::root;
+				delete find;
+			}
+			else
+			{
+				throw "ERROR";
+			}
 		}
 		else
 		{
-			throw "ERROR";
+			if (parent1->left == find)
+			{
+				parent1->left = find->left;
+				find->left->parent = parent1;
+				delete find;  
+			}
+			else if (parent1->right == find)
+			{
+				parent1->right = find->left;
+				find->left->parent = parent1;
+				delete find;
+			}
+			else
+			{
+				throw "ERROR";
+			}
 		}
 	}
-	else if (find->right != nullptr)
+	else if (find->right != nullptr)//have one son right
 	{
-		if (parent1->left == find)
+		if (parent1 == nullptr)//if find is root
 		{
-			parent1->left = find->right;
-			find->right->parent = parent1;
-			delete find;
-		}
-		else if (parent1->right == find)
-		{
-			parent1->right = find->right;
-			find->right->parent = parent1;
-			delete find;
+			if (Tree<T>::root->left == find)
+			{
+				Tree<T>::root->left = find->right;
+				find->right->parent = Tree<T>::root;
+				delete find;
+			}
+			else if (Tree<T>::root->right == find)
+			{
+				Tree<T>::root->right = find->right;
+				find->right->parent = Tree<T>::root;
+				delete find;
+			}
+			else
+			{
+				throw "ERROR";
+			}
 		}
 		else
 		{
-			throw "ERROR";
+			if (parent1->left == find)
+			{
+				parent1->left = find->right;
+				find->right->parent = parent1;
+				delete find;
+			}
+			else if (parent1->right == find)
+			{
+				parent1->right = find->right;
+				find->right->parent = parent1;
+				delete find;
+			}
+			else
+			{
+				throw "ERROR";
+			}
 		}
 	}
 	
