@@ -14,7 +14,7 @@ and declaration of is methods.*/
 #include<iostream>
 using namespace std;
 
-class Solider
+class Soldier
 {
 	//data
 protected:
@@ -24,12 +24,16 @@ protected:
 	int specials_event;
 
 public:
-	Solider(int id, string privete_name, string familiy_name, int specials_event) : id(id)
+	Soldier(int id, string privete_name, string familiy_name, int specials_event) : id(id)
 		, privete_name(privete_name), familiy_name(familiy_name), specials_event(specials_event) {};//ctor
 
-	virtual ~Solider() {};//dtor
+	virtual ~Soldier() {};//dtor
 	virtual bool medal()const = 0;//virtual func
 	virtual void print() const = 0;//virtual func
-	virtual string soldierType() const = 0//virtual func
+	virtual string soldierType() const = 0;//virtual func
+	int get_id() { return this->id; }
+	string get_privite_name() { return this->privete_name; }
+	string get_family_name() { return this->familiy_name; }
+	int get_specials_event() { return this->specials_event; }
 
 };
