@@ -3,7 +3,13 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include "Officer.h"
+#include "PrivateSoldier.h"
+#include "Soldier.h"
+
 using namespace std;
+
+void medal(list<Soldier*> listSoldier);
 
 enum option {
 	EXIT,	//	סיום התוכנית
@@ -64,4 +70,16 @@ int main()
 		cin >> op;
 	}
 	return 0;
+}
+
+void medal(list<Soldier*>  listSoldier)
+{
+	for (list<Soldier*>::iterator it = listSoldier.begin(); it !=listSoldier.end(); it++)
+	{
+		if ((*it)->medal() )
+		{
+			(*it)->print();
+			cout << endl;
+		}
+	}
 }

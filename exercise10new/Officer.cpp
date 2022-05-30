@@ -30,7 +30,6 @@ void Officer::print()const
 	cout << "last name: " << familiy_name << endl;
 	cout << "num operations: " << specials_event << endl;
 	cout << "sociometric score: " << sociometric_score << endl;
-	cout << "i";
 }
 
 string Officer::soldierType()

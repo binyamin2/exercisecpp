@@ -70,3 +70,11 @@ void PrivateSoldier::print() const
 	cout << endl;
 	return;
 }
+
+void PrivateSoldier::set_array()
+{
+	for (int i = 0; i < this->get_specials_event(); i++)
+	{
+		cin >> this->military_assessment[i];
+	}
+}
