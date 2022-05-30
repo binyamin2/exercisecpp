@@ -16,7 +16,7 @@ using namespace std;
 
 class PrivateSoldier : public Soldier
 {
-private:
+protected:
 	int* military_assessment;
 public:
 	PrivateSoldier() : Soldier() { military_assessment = nullptr; };
@@ -27,7 +27,7 @@ public:
 	PrivateSoldier(PrivateSoldier & ps) ;
 	PrivateSoldier(PrivateSoldier && ps);
 	virtual bool medal()const override;
-	virtual void print()const ;
+	virtual void print()const override;
 	virtual string soldierType() const { return "private"; };//virtual func
 	int get_grade(int index) { return military_assessment[index]; };
 	void set_array();

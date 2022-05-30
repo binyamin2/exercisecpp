@@ -3,13 +3,13 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include"Commander.h"
 #include "Officer.h"
 #include "PrivateSoldier.h"
 #include "Soldier.h"
 
 using namespace std;
 
-void medal(list<Soldier*> listSoldier);
 
 enum option {
 	EXIT,	//	סיום התוכנית
@@ -21,8 +21,8 @@ enum option {
 	SUPER_SOLDIER,   //הדפסת הודעה מתאימה, האם קיים חייל שהשתתף ביותר מ- 15  מבצעים צבאיים
 	REMOVE_OFFICER,	//	מחיקת כל החיילים הקצינים שלא השתתפו כלל במבצע צבאי
 };
-void add(_________);    //השלם\י פרמטר- ווקטור או רשימה  
-void printMedalList(_________);   //השלם\י פרמטר- ווקטור או רשימה  
+void add(list<Soldier*> listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
+void printMedalList(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
 Soldier* highesttSociometricScore(_________);   //השלם\י פרמטר- ווקטור או רשימה  
 
 int main()
@@ -72,9 +72,53 @@ int main()
 	return 0;
 }
 
-void medal(list<Soldier*>  listSoldier)
+void add(list<Soldier*> listSoldier)
 {
-	for (list<Soldier*>::iterator it = listSoldier.begin(); it !=listSoldier.end(); it++)
+	int type, id, numOfOperations;
+	string f_name, l_name;
+	bool is_combat;
+	float s_score;
+	cout << "choose a soldier\n";
+	cout << "enter 1 to add a private\n";
+	cout << "enter 2 to add a commander\n";
+	cout << "enter 3 to add an officer\n";
+	cin >> type;
+	cout << "enter id, first name, last name and number of operations\n";
+	cin >> id >> f_name >> l_name >> numOfOperations;
+	Soldier* news;
+	if (type == 1)
+	{
+		news =new PrivateSoldier(id, f_name, l_name, numOfOperations);
+		cout << "enter " << numOfOperations << " grades\n";
+		((PrivateSoldier*)news)->set_array();
+		listSoldier.push_back(news);
+	}
+	else if (type == 2)
+	{
+
+		news =new Commander (id, f_name, l_name, numOfOperations, 1);
+		cout << "enter " << numOfOperations << " grades\n";
+		((Commander*)news)->set_array();
+		cout << "enter 1 if the soldier is combat and 0 if not\n";
+		cin >> is_combat;
+		((Commander*)news) ->set_combat(is_combat);
+		listSoldier.push_back(news);
+	}
+	else
+	{
+		cout << "enter the sociometric score\n";
+		cin >> s_score;
+		news = new Officer(id, f_name, l_name, numOfOperations, s_score);
+		listSoldier.push_back(news);
+	}
+	
+
+}
+
+void printMedalList(list<Soldier*>  listSoldier)
+{
+	typedef list<Soldier*>::iterator ILS;
+	for (ILS it = listSoldier.begin(); it !=listSoldier.end(); it++)
 	{
 		if ((*it)->medal() )
 		{

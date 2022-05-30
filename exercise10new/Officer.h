@@ -17,7 +17,7 @@ public:
 	virtual ~Officer() {};//dtor
 	bool medal()const override;
 	void print()const override;
-	string soldierType();
+	string soldierType() const override;
 	float get_sociometric_score()const;
 	
 };

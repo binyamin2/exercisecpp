@@ -32,7 +32,7 @@ void Officer::print()const
 	cout << "sociometric score: " << sociometric_score << endl;
 }
 
-string Officer::soldierType()
+string Officer::soldierType() const
 {
 	return "Officer ";
 }
