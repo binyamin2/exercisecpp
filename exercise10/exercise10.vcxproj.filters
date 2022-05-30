@@ -18,7 +18,7 @@
     <ClInclude Include="Soldier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PrivateSoldier.h">
+    <ClInclude Include="Officer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

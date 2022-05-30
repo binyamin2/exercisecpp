@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="PrivateSoldier.h" />
+    <ClInclude Include="Officer.h" />
     <ClInclude Include="Soldier.h" />
   </ItemGroup>
   <ItemGroup>
