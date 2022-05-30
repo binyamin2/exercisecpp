@@ -26,7 +26,7 @@ protected:
 public:
 	Soldier(int id, string privete_name, string familiy_name, int specials_event) : id(id)
 		, privete_name(privete_name), familiy_name(familiy_name), specials_event(specials_event) {};//ctor
-
+	Soldier() : id(0), privete_name("0"), familiy_name("0"), specials_event(0) {};//ctor
 	virtual ~Soldier() {};//dtor
 	virtual bool medal()const = 0;//virtual func
 	virtual void print() const = 0;//virtual func

@@ -19,12 +19,16 @@ class PrivateSoldier : public Soldier
 private:
 	int* military_assessment;
 public:
+	PrivateSoldier() : Soldier() { military_assessment = nullptr; };
 	PrivateSoldier(int id, string privete_name, string familiy_name, int specials_event) :
 		Soldier(id, privete_name, familiy_name, specials_event) {
 		this->military_assessment = new int[specials_event];}
-	//ctor : Shape(3) {} //ctor
-	bool isSpecial() const override;//check if spacial 
-	void printSpecial() const override;//print if 
-	float area()const override;//calculate area
+	virtual ~PrivateSoldier() override;
+	PrivateSoldier(PrivateSoldier & ps) ;
+	PrivateSoldier(PrivateSoldier && ps);
+	virtual bool medal()const override;
+	virtual void print()const ;
+	virtual string soldierType() const { return "private"; };//virtual func
+	int get_grade(int index) { return military_assessment[index]; }
 
 };
