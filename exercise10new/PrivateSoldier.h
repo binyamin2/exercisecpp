@@ -29,6 +29,6 @@ public:
 	virtual bool medal()const override;
 	virtual void print()const ;
 	virtual string soldierType() const { return "private"; };//virtual func
-	int get_grade(int index) { return military_assessment[index]; }
+	int get_grade(int index) { return military_assessment[index]; };
 
 };
