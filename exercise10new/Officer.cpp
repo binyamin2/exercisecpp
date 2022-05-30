@@ -4,6 +4,15 @@
 #include <string>
 using namespace std;
 
+Officer::Officer(Officer& o)
+{
+	id = o.get_id();
+	privete_name = o.get_privite_name();
+	familiy_name = o.get_family_name();
+	specials_event = o.get_specials_event();
+	sociometric_score = o.get_sociometric_score();
+}
+
 bool Officer::medal()const
 {
 	if (specials_event > 2 && sociometric_score > 92)
@@ -12,10 +21,7 @@ bool Officer::medal()const
 		return false;
 }
 
-Officer Officer::(Officer& o)
-	{
 
-	} 
 
 void Officer::print()const
 {
