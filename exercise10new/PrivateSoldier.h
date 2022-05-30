@@ -30,5 +30,6 @@ public:
 	virtual void print()const ;
 	virtual string soldierType() const { return "private"; };//virtual func
 	int get_grade(int index) { return military_assessment[index]; };
+	void set_array();
 
 };
