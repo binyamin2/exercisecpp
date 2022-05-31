@@ -23,7 +23,7 @@ enum option {
 };
 void add(list<Soldier*> listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
 void printMedalList(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
-Soldier* highesttSociometricScore(_________);   //השלם\י פרמטר- ווקטור או רשימה  
+Soldier* highesttSociometricScore(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
 
 int main()
 {
@@ -126,4 +126,27 @@ void printMedalList(list<Soldier*>  listSoldier)
 			cout << endl;
 		}
 	}
+}
+
+Soldier* highesttSociometricScore(list<Soldier*> listSoldier)
+{
+	list<Soldier*>::iterator it;
+	float max = -1;
+	Soldier* temp;
+	for (it = listSoldier.begin(); it!=listSoldier.end(); it++)//for run on all the list
+	{
+		if ((*it)->soldierType() == "Officer")
+		{
+			if (((Officer*)(*it))->get_sociometric_score() > max)//if its Officer update the max sociometric and the pointer
+			{
+				temp = *it;
+				max = ((Officer*)(*it))->get_sociometric_score();
+			}
+		}
+	}
+	if (max = -1)//if there is no Officers return null
+	{
+		return nullptr;
+	}
+	return temp;
 }
