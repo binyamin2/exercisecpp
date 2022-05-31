@@ -28,7 +28,7 @@ Soldier* highesttSociometricScore(_________);   //השלם\י פרמטר- ווקטור או רשימה
 int main()
 {
 	Soldier* s;
-	________________   // הצהרה על ווקטור או רשימה של חיילים
+	list<Soldier*> listSoldier;// הצהרה על ווקטור או רשימה של חיילים
 		int op;
 	cout << "enter 0-7\n";
 	cin >> op;
@@ -36,34 +36,37 @@ int main()
 	{
 		switch (op)
 		{
-		case ADD_NEW_SOLDIER:add(____________);  //הוספת חייל חדש						
+		case ADD_NEW_SOLDIER:add(listSoldier);  //הוספת חייל חדש						
 			break;
-		case DESERVES_MEDAL:printMedalList(____________);  //הדפסת פרטי הזכאים לצל"ש
+		case DESERVES_MEDAL:printMedalList(listSoldier);  //הדפסת פרטי הזכאים לצל"ש
 			break;
 		case HIGHEST_SOCIOMETRIC:   //הדפסת שם הקצין בעל ציון סוציומטרי גבוה ביותר 
-			s = highestSociometricScore(_____); // השלם\י פרמטר-וקטור או רשימה
+			s = highestSociometricScore(listSoldier); // השלם\י פרמטר-וקטור או רשימה
 			cout << "Officer with the highest sociometric score: ";
 			cout << s->getFirstName() << ' ' << s->getLastName() << endl;
 
 			break;
 		case PRIVATE_MEDAL_COUNT:  cout << "number of privates that received medals: ";
-			________________ //הדפסת מספר הזכאים לצל"ש בטירונים
+			count_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {return sd->soldierType() == "PrivateSoldier" &&
+				sd->medal(); }); //הדפסת מספר הזכאים לצל"ש בטירונים
 				cout << endl;
 			break;
 		case NONCOMBAT_COMMANDER: cout << "list of noncombat commanders: ";    //הדפסת רשימת(שם משפחה ופרטי) החיילים המפקדים שאינם בקרבי
-			________________
+			for_each(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {if (sd->soldierType() == "Commander" && !((Commander*)sd)->get_combat())
+				sd->print(); });
 				cout << endl;
 			break;
 		case SUPER_SOLDIER:
-			if (______________) // קיים חייל שהשתתף יובתר מ- 15 מבצעים צבאיים
+			if (any_of(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {return sd->get_specials_event() > 15; })) // קיים חייל שהשתתף יובתר מ- 15 מבצעים צבאיים
 
 				cout << "there is at least one soldier that did more than 15 operations\n";
 			else
 				cout << "no soldier did more than 15 operations\n";
 			break;
 		case REMOVE_OFFICER://מחיקה מהווקטור/רשימה של כל החיילם קצינים שאינם השתתפו כלל במבצעים צבאיים
-			________________
-				________________ //הדפסת כל הרשימה לאחר מחיקת האיברים
+			list<Soldier*>::iterator ILS = remove_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd)
+				{return (sd->get_specials_event() == 0); });
+			for_each(listSoldier.begin(), ILS, [](Soldier* sd) {sd->print(); }); //הדפסת כל הרשימה לאחר מחיקת האיברים
 				break;
 		};
 		cout << "enter 0-7\n";

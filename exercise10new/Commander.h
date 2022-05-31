@@ -16,4 +16,5 @@ public:
 	Commander(Commander& c);
 	Commander(Commander&& c);
 	void set_combat(bool c);
+	bool get_combat() { return this->combat; };
 };

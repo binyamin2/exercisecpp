@@ -45,9 +45,9 @@ Commander::Commander(Commander& c): PrivateSoldier(c)
 
 Commander::Commander(Commander && c)
 {
-	this->familiy_name = c.get_family_name();
+	this->familiy_name = c.getLastName();
 	this->id = c.get_id();
-	this->privete_name = c.get_privite_name();
+	this->privete_name = c.getFirstName();
 	this->specials_event = c.get_specials_event();
 	this->military_assessment = c.military_assessment;
 	c.military_assessment = nullptr;

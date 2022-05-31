@@ -32,8 +32,8 @@ public:
 	virtual void print() const = 0;//virtual func
 	virtual string soldierType() const = 0;//virtual func
 	int get_id() { return this->id; }
-	string get_privite_name() { return this->privete_name; }
-	string get_family_name() { return this->familiy_name; }
+	string getFirstName() { return this->privete_name; }
+	string getLastName() { return this->familiy_name; }
 	int get_specials_event() { return this->specials_event; }
 
 };

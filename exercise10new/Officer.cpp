@@ -7,8 +7,8 @@ using namespace std;
 Officer::Officer(Officer& o)
 {
 	id = o.get_id();
-	privete_name = o.get_privite_name();
-	familiy_name = o.get_family_name();
+	privete_name = o.getFirstName();
+	familiy_name = o.getLastName();
 	specials_event = o.get_specials_event();
 	sociometric_score = o.get_sociometric_score();
 }
