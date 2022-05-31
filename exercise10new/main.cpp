@@ -47,13 +47,13 @@ int main()
 
 			break;
 		case PRIVATE_MEDAL_COUNT:  cout << "number of privates that received medals: ";
-			count_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {return sd->soldierType() == "PrivateSoldier" &&
+			cout << count_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {return sd->soldierType() == "PrivateSoldier" &&
 				sd->medal(); }); //הדפסת מספר הזכאים לצל"ש בטירונים
 				cout << endl;
 			break;
 		case NONCOMBAT_COMMANDER: cout << "list of noncombat commanders: ";    //הדפסת רשימת(שם משפחה ופרטי) החיילים המפקדים שאינם בקרבי
 			for_each(listSoldier.begin(), listSoldier.end(), [](Soldier* sd) {if (sd->soldierType() == "Commander" && !((Commander*)sd)->get_combat())
-				sd->print(); });
+				cout << sd->getFirstName() << ' ' << sd->getLastName() << endl; });
 				cout << endl;
 			break;
 		case SUPER_SOLDIER:
@@ -147,7 +147,7 @@ Soldier* highestSociometricScore(list<Soldier*> listSoldier)
 			}
 		}
 	}
-	if (max = -1)//if there is no Officers return null
+	if (max == -1)//if there is no Officers return null
 	{
 		return nullptr;
 	}

@@ -30,7 +30,16 @@ bool Commander::medal() const
 
 void Commander::print() const
 {
-	PrivateSoldier::print();
+	cout << "commander" << endl << "ID: " << this->id << endl;
+	cout << "first name: " << this->privete_name << endl;
+	cout << "last name: " << this->familiy_name << endl;
+	cout << "num operations: " << this->specials_event << endl;
+	cout << "grades: ";
+	for (int i = 0; i < specials_event; i++)
+	{
+		cout << military_assessment[i] << " ";
+	}
+	cout << endl;
 	cout << "combat: ";
 	if (combat)
 		cout << "yes" << endl;

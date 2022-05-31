@@ -34,7 +34,7 @@ void Officer::print()const
 
 string Officer::soldierType() const
 {
-	return "Officer ";
+	return "Officer";
 }
 
 float Officer::get_sociometric_score()const
