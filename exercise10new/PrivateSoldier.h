@@ -8,7 +8,7 @@ course : cadna c++.
 exercise 7
 
 the file is definition of class "Triangle" (this class is sun of class "shape")
-and declaration of is methods.*/
+and declaration of is .*/
 #pragma once
 #include<iostream>
 #include "Soldier.h"
