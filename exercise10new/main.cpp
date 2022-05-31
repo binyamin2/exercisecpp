@@ -21,9 +21,9 @@ enum option {
 	SUPER_SOLDIER,   //הדפסת הודעה מתאימה, האם קיים חייל שהשתתף ביותר מ- 15  מבצעים צבאיים
 	REMOVE_OFFICER,	//	מחיקת כל החיילים הקצינים שלא השתתפו כלל במבצע צבאי
 };
-void add(list<Soldier*> listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
+void add(list<Soldier*> &listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
 void printMedalList(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
-Soldier* highesttSociometricScore(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
+Soldier* highestSociometricScore(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
 
 int main()
 {
@@ -75,7 +75,7 @@ int main()
 	return 0;
 }
 
-void add(list<Soldier*> listSoldier)
+void add(list<Soldier*> &listSoldier)
 {
 	int type, id, numOfOperations;
 	string f_name, l_name;
@@ -131,12 +131,12 @@ void printMedalList(list<Soldier*>  listSoldier)
 	}
 }
 
-Soldier* highesttSociometricScore(list<Soldier*> listSoldier)
+Soldier* highestSociometricScore(list<Soldier*> listSoldier)
 {
-	list<Soldier*>::iterator it;
+
 	float max = -1;
-	Soldier* temp;
-	for (it = listSoldier.begin(); it!=listSoldier.end(); it++)//for run on all the list
+	Soldier* temp = nullptr;
+	for (list<Soldier*>::iterator it = listSoldier.begin(); it !=listSoldier.end(); it++)//for run on all the list
 	{
 		if ((*it)->soldierType() == "Officer")
 		{

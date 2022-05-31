@@ -16,9 +16,9 @@ PrivateSoldier::~PrivateSoldier()
 PrivateSoldier::PrivateSoldier(PrivateSoldier& ps)
 {
 
-	this->familiy_name = ps.get_family_name();
+	this->familiy_name = ps.getLastName();
 	this->id = ps.get_id();
-	this->privete_name = ps.get_privite_name();
+	this->privete_name = ps.getFirstName();
 	this->specials_event = ps.get_specials_event();
 	this->military_assessment = new int[ps.get_specials_event()];
 	for (int i = 0; i < specials_event; i++)
@@ -29,9 +29,9 @@ PrivateSoldier::PrivateSoldier(PrivateSoldier& ps)
 
 PrivateSoldier::PrivateSoldier(PrivateSoldier&& ps)
 {
-	this->familiy_name = ps.get_family_name();
+	this->familiy_name = ps.getFirstName();
 	this->id = ps.get_id();
-	this->privete_name = ps.get_privite_name();
+	this->privete_name = ps.getLastName();
 	this->specials_event = ps.get_specials_event();
 	this->military_assessment = ps.military_assessment;
 	ps.military_assessment = nullptr;
