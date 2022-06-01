@@ -64,8 +64,8 @@ int main()
 				cout << "no soldier did more than 15 operations\n";
 			break;
 		case REMOVE_OFFICER://מחיקה מהווקטור/רשימה של כל החיילם קצינים שאינם השתתפו כלל במבצעים צבאיים
-			list<Soldier*>::iterator ILS = remove_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd)//TODO: add &
-				{return (sd->get_specials_event() == 0); });
+			list<Soldier*>::iterator ILS = remove_if(listSoldier.begin(), listSoldier.end(), []( Soldier*  sd)//TODO: add &
+				{return (sd->soldierType() == "officer" && sd->get_specials_event() == 0); });
 			for_each(listSoldier.begin(), ILS, [](Soldier* sd) {sd->print(); }); //הדפסת כל הרשימה לאחר מחיקת האיברים
 				break;
 		};
@@ -73,7 +73,7 @@ int main()
 		cin >> op;
 	}
 	return 0;
-}
+} 
 
 void add(list<Soldier*> &listSoldier)
 {
