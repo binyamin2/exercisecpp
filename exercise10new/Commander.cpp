@@ -34,12 +34,15 @@ void Commander::print() const
 	cout << "first name: " << this->privete_name << endl;
 	cout << "last name: " << this->familiy_name << endl;
 	cout << "num operations: " << this->specials_event << endl;
-	cout << "grades: ";// TODO: if not have specials_event 
-	for (int i = 0; i < specials_event; i++)
+	if (this->specials_event > 0)
 	{
-		cout << military_assessment[i] << " ";
+		cout << "grades: ";// TODO: if not have specials_event 
+		for (int i = 0; i < specials_event; i++)
+		{
+			cout << military_assessment[i] << " ";
+		}
+		cout << endl;
 	}
-	cout << endl;
 	cout << "combat: ";
 	if (combat)
 		cout << "yes" << endl;
