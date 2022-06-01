@@ -1,7 +1,7 @@
-#pragma once
 #include<iostream>
 #include "PrivateSoldier.h"
 #include <algorithm>
+
 using namespace std;
 
 PrivateSoldier::~PrivateSoldier()

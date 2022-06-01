@@ -4,10 +4,7 @@
 
 using namespace std;
 
-Commander::~Commander()
-{
-	PrivateSoldier::~PrivateSoldier();
-}
+
 
 bool Commander::medal() const
 {

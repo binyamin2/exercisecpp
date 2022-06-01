@@ -25,7 +25,7 @@ bool Officer::medal()const
 
 void Officer::print()const
 {
-	cout << "Officer " << endl;
+	cout << "officer " << endl;
 	cout << "ID: " << id << endl;
 	cout << "first name: " << privete_name << endl;
 	cout << "last name: " << familiy_name << endl;

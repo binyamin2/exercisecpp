@@ -9,7 +9,7 @@ class Commander :public PrivateSoldier
 public:
 	Commander(int id, string privete_name, string familiy_name, int specials_event, bool combat) :
 		PrivateSoldier(id, privete_name, familiy_name, specials_event), combat(combat) {};
-	virtual ~Commander() override;
+	virtual ~Commander() override {};
 	virtual string soldierType() const override { return "commander"; };
 	virtual bool medal()const override;
 	virtual void print()const override;

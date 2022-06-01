@@ -91,16 +91,23 @@ void add(list<Soldier*> &listSoldier)
 	if (type == 1)
 	{
 		news =new PrivateSoldier(id, f_name, l_name, numOfOperations);
-		cout << "enter " << numOfOperations << " grades\n";
-		((PrivateSoldier*)news)->set_array();
+		if (numOfOperations)
+		{
+			cout << "enter " << numOfOperations << " grades\n";
+			((PrivateSoldier*)news)->set_array();
+		}
 		listSoldier.push_back(news);
 	}
 	else if (type == 2)
 	{
 
 		news =new Commander (id, f_name, l_name, numOfOperations, 1);
-		cout << "enter " << numOfOperations << " grades\n";
-		((Commander*)news)->set_array();
+		if (numOfOperations)
+		{
+			cout << "enter " << numOfOperations << " grades\n";
+			((Commander*)news)->set_array();
+		}
+
 		cout << "enter 1 if the soldier is combat and 0 if not\n";
 		cin >> is_combat;
 		((Commander*)news) ->set_combat(is_combat);
