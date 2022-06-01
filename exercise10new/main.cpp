@@ -21,7 +21,7 @@ enum option {
 	SUPER_SOLDIER,   //הדפסת הודעה מתאימה, האם קיים חייל שהשתתף ביותר מ- 15  מבצעים צבאיים
 	REMOVE_OFFICER,	//	מחיקת כל החיילים הקצינים שלא השתתפו כלל במבצע צבאי
 };
-void add(list<Soldier*> &listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
+void add(list<Soldier*> & listSoldier);    //השלם\י פרמטר- ווקטור או רשימה  
 void printMedalList(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
 Soldier* highestSociometricScore(list<Soldier*> listSoldier);   //השלם\י פרמטר- ווקטור או רשימה  
 
@@ -64,7 +64,7 @@ int main()
 				cout << "no soldier did more than 15 operations\n";
 			break;
 		case REMOVE_OFFICER://מחיקה מהווקטור/רשימה של כל החיילם קצינים שאינם השתתפו כלל במבצעים צבאיים
-			list<Soldier*>::iterator ILS = remove_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd)
+			list<Soldier*>::iterator ILS = remove_if(listSoldier.begin(), listSoldier.end(), [](Soldier* sd)//TODO: add &
 				{return (sd->get_specials_event() == 0); });
 			for_each(listSoldier.begin(), ILS, [](Soldier* sd) {sd->print(); }); //הדפסת כל הרשימה לאחר מחיקת האיברים
 				break;

@@ -62,7 +62,7 @@ void PrivateSoldier::print() const
 	cout << "first name: " << this->privete_name << endl;
 	cout << "last name: " << this->familiy_name << endl;
 	cout << "num operations: " << this->specials_event << endl;
-	cout << "grades: ";
+	cout << "grades: ";// TODO: if not have specials_event dont print grades and not inside to for
 	for (int i = 0; i < specials_event; i++)
 	{
 		cout << military_assessment[i] << " ";
