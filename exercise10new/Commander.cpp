@@ -4,9 +4,19 @@
 
 using namespace std;
 
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+exercise 10
+
+file for comander class implementation   .*/
 
 
-bool Commander::medal() const
+bool Commander::medal() const//return true if should get a medal
 {
 	if (this->specials_event > 6 && this->combat)
 	{
@@ -25,13 +35,13 @@ bool Commander::medal() const
 	}
 }
 
-void Commander::print() const
+void Commander::print() const//print commander details
 {
 	cout << "commander" << endl << "ID: " << this->id << endl;
 	cout << "first name: " << this->privete_name << endl;
 	cout << "last name: " << this->familiy_name << endl;
 	cout << "num operations: " << this->specials_event << endl;
-	if (this->specials_event > 0)
+	if (this->specials_event > 0)//print the grades only if heve spacial operations
 	{
 		cout << "grades: ";
 		for (int i = 0; i < specials_event; i++)
@@ -40,19 +50,19 @@ void Commander::print() const
 		}
 		cout << endl;
 	}
-	cout << "combat: ";
+	cout << "combat: ";//print if combat or not
 	if (combat)
 		cout << "yes" << endl;
 	else
 		cout << "no" << endl;
 }
 
-Commander::Commander(Commander& c): PrivateSoldier(c)
+Commander::Commander(Commander& c): PrivateSoldier(c)//copy ctor(call private soldier copy ctor)
 {
 	combat = c.combat;
 }
 
-Commander::Commander(Commander && c)
+Commander::Commander(Commander && c)//move constractor
 {
 	this->familiy_name = c.getLastName();
 	this->id = c.get_id();
@@ -63,7 +73,7 @@ Commander::Commander(Commander && c)
 	combat = c.combat;
 }
 
-void Commander::set_combat(bool c)
+void Commander::set_combat(bool c)//set if combat
 {
 	combat = c;
 }

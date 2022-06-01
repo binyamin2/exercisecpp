@@ -4,7 +4,18 @@
 #include <string>
 using namespace std;
 
-Officer::Officer(Officer& o)
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+exercise 10
+
+file for officer class implementation   .*/
+
+Officer::Officer(Officer& o)//copy ctor
 {
 	id = o.get_id();
 	privete_name = o.getFirstName();
@@ -13,7 +24,7 @@ Officer::Officer(Officer& o)
 	sociometric_score = o.get_sociometric_score();
 }
 
-bool Officer::medal()const
+bool Officer::medal()const//return true if should get medal
 {
 	if (specials_event > 2 && sociometric_score > 92)
 		return true;
@@ -23,7 +34,7 @@ bool Officer::medal()const
 
 
 
-void Officer::print()const
+void Officer::print()const//print officer details
 {
 	cout << "officer " << endl;
 	cout << "ID: " << id << endl;
@@ -38,7 +49,7 @@ string Officer::soldierType() const
 	return "officer";
 }
 
-float Officer::get_sociometric_score()const
+float Officer::get_sociometric_score()const//get sociometric score
 {
 	return sociometric_score;
 }
