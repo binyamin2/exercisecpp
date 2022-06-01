@@ -6,9 +6,9 @@ we make together
 
 course : cadna c++.
 
-exercise 7
+exercise 10
 
-the file is definition of class "point"
+the file is definition of class "Soldier"
 and declaration of is methods.*/
 #pragma once
 #include<iostream>
@@ -24,6 +24,7 @@ protected:
 	int specials_event;
 
 public:
+	//constactor
 	Soldier(int id, string privete_name, string familiy_name, int specials_event) : id(id)
 		, privete_name(privete_name), familiy_name(familiy_name), specials_event(specials_event) {};//ctor
 	Soldier() : id(0), privete_name("0"), familiy_name("0"), specials_event(0) {};//ctor
