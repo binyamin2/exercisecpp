@@ -1,3 +1,13 @@
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+exercise 10
+
+the main check the operation in the class         .*/
 #include <iostream>
 #include <list>
 #include <vector>
@@ -88,24 +98,24 @@ void add(list<Soldier*> &listSoldier)
 	cout << "enter id, first name, last name and number of operations\n";
 	cin >> id >> f_name >> l_name >> numOfOperations;
 	Soldier* news;
-	if (type == 1)
+	if (type == 1)//privite soldier
 	{
 		news =new PrivateSoldier(id, f_name, l_name, numOfOperations);
-		if (numOfOperations)
+		if (numOfOperations)//if numOfOperations != 0
 		{
 			cout << "enter " << numOfOperations << " grades\n";
-			((PrivateSoldier*)news)->set_array();
+			((PrivateSoldier*)news)->set_array();//inside function to insert the value
 		}
 		listSoldier.push_back(news);
 	}
-	else if (type == 2)
+	else if (type == 2)//commander
 	{
 
 		news =new Commander (id, f_name, l_name, numOfOperations, 1);
-		if (numOfOperations)
+		if (numOfOperations)//if numOfOperations != 0
 		{
 			cout << "enter " << numOfOperations << " grades\n";
-			((Commander*)news)->set_array();
+			((Commander*)news)->set_array();//inside function to insert the value
 		}
 
 		cout << "enter 1 if the soldier is combat and 0 if not\n";
@@ -113,7 +123,7 @@ void add(list<Soldier*> &listSoldier)
 		((Commander*)news) ->set_combat(is_combat);
 		listSoldier.push_back(news);
 	}
-	else
+	else//officer
 	{
 		cout << "enter the sociometric score\n";
 		cin >> s_score;
@@ -129,7 +139,7 @@ void printMedalList(list<Soldier*>  listSoldier)
 	typedef list<Soldier*>::iterator ILS;
 	for (ILS it = listSoldier.begin(); it !=listSoldier.end(); it++)
 	{
-		if ((*it)->medal() )
+		if ((*it)->medal() )//if return bool
 		{
 			(*it)->print();
 			cout << endl;
@@ -159,3 +169,59 @@ Soldier* highestSociometricScore(list<Soldier*> listSoldier)
 	}
 	return temp;
 }
+
+
+/*
+enter 0-7
+1 1 111 aaa aaa 3 100 95 98 1 2 222 bbb bbb 0 1
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 3 grades
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 1 if the soldier is combat and 0 if not
+enter 0-7
+ 1 3 333 ccc ccc 0 100
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter the sociometric score
+enter 0-7
+3
+Officer with the highest sociometric score: ccc ccc
+enter 0-7
+4
+number of privates that received medals: 0
+enter 0-7
+7
+private
+ID: 111
+first name: aaa
+last name: aaa
+num operations: 3
+grades: 100 95 98
+commander
+ID: 222
+first name: bbb
+last name: bbb
+num operations: 0
+combat: yes
+enter 0-7
+2
+enter 0-7
+0
+
+C:\Users\binyamin\OneDrive - g.jct.ac.il\sadnac++\exercise\exercise\Debug\exercise10new.exe (process 13204) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+
+*/
