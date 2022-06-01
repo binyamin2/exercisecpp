@@ -36,7 +36,7 @@ void Commander::print() const
 	cout << "num operations: " << this->specials_event << endl;
 	if (this->specials_event > 0)
 	{
-		cout << "grades: ";// TODO: if not have specials_event 
+		cout << "grades: ";
 		for (int i = 0; i < specials_event; i++)
 		{
 			cout << military_assessment[i] << " ";

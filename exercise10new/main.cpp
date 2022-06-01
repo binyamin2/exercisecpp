@@ -137,7 +137,7 @@ Soldier* highestSociometricScore(list<Soldier*> listSoldier)
 	Soldier* temp = nullptr;
 	for (list<Soldier*>::iterator it = listSoldier.begin(); it !=listSoldier.end(); it++)//for run on all the list
 	{
-		if ((*it)->soldierType() == "Officer")
+		if ((*it)->soldierType() == "officer")
 		{
 			if (((Officer*)(*it))->get_sociometric_score() > max)//if its Officer update the max sociometric and the pointer
 			{
