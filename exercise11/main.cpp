@@ -23,8 +23,8 @@ enum ACTIVITY {
 
 void setFile(fstream& file);
 void add(fstream& file);
- void add(fstream& file);
  void del(fstream& file, int fum_num);
+ int count(fstream& file, int activiti);
 
 
 void handleCount(fstream& file) {
@@ -198,3 +198,17 @@ void del(fstream& file,int fum_num)
 		file.write((char*)&fzero, sizeof(Family));
 		file.clear();
 }
+int count(fstream& file, int activiti)
+{
+	Family ftemp;
+	int sum = 0;
+	while(!file.eof())
+	{
+		file.read((char*)&ftemp, sizeof(Family));
+		if (ftemp.get_activities() & activiti)
+			sum++;
+	}
+	return sum;
+	file.clear();
+}
+
