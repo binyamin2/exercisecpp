@@ -23,7 +23,7 @@ enum ACTIVITY {
 
 void setFile(fstream& file);
  void add(fstream& file);
-
+ void del(fstream& file, int fum_num);
 
 
 void handleCount(fstream& file) {
@@ -37,7 +37,7 @@ void handleCount(fstream& file) {
 		cout << count(file, SWIMMING);
 		break;
 	case 2:
-		cout << count(file, GYMNASTICS);
+		cout << count(file, GYMNATSTICS);
 		break;
 	case 3:
 		cout << count(file, DANCE);
@@ -162,4 +162,26 @@ void add(fstream& file)
 	Family(f_num, f_nam, num_o_p, fhone);
 
 
+}
+
+
+
+void del(fstream& file,int fum_num)
+{
+	
+	
+	if (fum_num < 1 || fum_num >> 100)
+	{
+
+	}//throw;
+		Family ftemp, fzero;
+		file.seekg(fum_num * sizeof(Family));
+		file.read((char*)&ftemp, sizeof(Family));
+		if (ftemp.get_f_num() == 0)
+		{
+			//throw
+		}
+		file.seekp(fum_num * sizeof(Family));
+		file.write((char*)&fzero, sizeof(Family));
+		file.clear();
 }

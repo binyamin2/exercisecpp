@@ -23,5 +23,8 @@
     <ClInclude Include="Family.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Myex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
