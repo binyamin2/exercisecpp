@@ -22,6 +22,7 @@ enum ACTIVITY {
 };
 
 void setFile(fstream& file);
+void add(fstream& file);
  void add(fstream& file);
  void del(fstream& file, int fum_num);
 
@@ -157,8 +158,20 @@ void add(fstream& file)
 	int num_o_p;
 	int fhone;
 
+	Family ftemp;
 	cin >> f_num >> f_nam >> num_o_p >> fhone;
 
+	file.seekg(f_num * sizeof(Family));
+	file.read((char*)&ftemp, sizeof(Family));
+	
+	if (ftemp.get_f_num() > 100 ||   )
+	{
+
+	}
+	if (ftemp.get_f_num() == 0)
+	{
+
+	}
 	Family(f_num, f_nam, num_o_p, fhone);
 
 
