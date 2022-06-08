@@ -1,3 +1,17 @@
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+
+exercise 9 1
+
+the file is definition of class template "Tree"
+and declaration of is methods
+and the difinition.*/
+
 #pragma once
 #include "QueueVector.h"
 #include <iostream>

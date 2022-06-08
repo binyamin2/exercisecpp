@@ -1,3 +1,15 @@
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+
+exercise 9 1
+
+the main check the operation in the class  "SearchTree.h"     .*/
+
 #include <iostream>
 using namespace std;
 #include "SearchTree.h"
@@ -84,3 +96,45 @@ int main()
 	}
 	return 0;
 }
+
+
+/*
+enter 10 numbers:
+6 8 7 12 36 32 42 24 28 17
+inorder: 6 7 8 12 17 24 28 32 36 42
+enter 0-8:
+1
+enter a number: 3
+after adding 3: 3 6 7 8 12 17 24 28 32 36 42
+enter 0-8:
+2
+enter a number: 4
+does not exist
+enter 0-8:
+3
+enter a number: 6
+after removing 6: 3 7 8 12 17 24 28 32 36 42
+enter 0-8:
+4
+breadth first scan: 7 3 8 12 36 32 42 24 17 28
+enter 0-8:
+5
+height of tree: 6
+enter 0-8:
+6
+enter a number: 2
+no exist
+enter 0-8:
+7
+after deleting duplicates: 3 7 8 12 17 24 28 32 36 42
+enter 0-8:
+8
+reflected tree: 42 36 32 28 24 17 12 8 7 3
+enter 0-8:
+0
+
+C:\Users\binyamin\OneDrive - g.jct.ac.il\sadnac++\exercise\exercise\Debug\exercise9-1.exe (process 22028) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+
+*/

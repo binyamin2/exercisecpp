@@ -1,3 +1,15 @@
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+exercise 9 question 1
+
+the file is definition of class "QueueVector" (this class is sun of class "Queue")
+and declaration of is methods          .*/
+
 #pragma once
 #include "Queue.h"
 
