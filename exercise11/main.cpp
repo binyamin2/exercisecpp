@@ -23,7 +23,8 @@ enum ACTIVITY {
 
 void setFile(fstream& file);
 void add(fstream& file);
-
+ void del(fstream& file, int fum_num);
+ int count(fstream& file, int activiti);
 
 
 void handleCount(fstream& file) {
@@ -37,7 +38,7 @@ void handleCount(fstream& file) {
 		cout << count(file, SWIMMING);
 		break;
 	case 2:
-		cout << count(file, GYMNASTICS);
+		cout << count(file, GYMNATSTICS);
 		break;
 	case 3:
 		cout << count(file, DANCE);
@@ -181,7 +182,44 @@ void add(fstream& file)
 			throw runtime_error("ERROR: Family is already in the file");
 		}
 
+
+}
+
+
+
+void del(fstream& file,int fum_num)
+{
+	
+	
+	if (fum_num < 1 || fum_num >> 100)
+	{
+
+	}//throw;
+		Family ftemp, fzero;
+		file.seekg(fum_num * sizeof(Family));
+		file.read((char*)&ftemp, sizeof(Family));
+		if (ftemp.get_f_num() == 0)
+		{
+			//throw
+		}
+		file.seekp(fum_num * sizeof(Family));
+		file.write((char*)&fzero, sizeof(Family));
+		file.clear();
+}
+int count(fstream& file, int activiti)
+{
+	Family ftemp;
+	int sum = 0;
+	while(!file.eof())
+	{
+		file.read((char*)&ftemp, sizeof(Family));
+		if (ftemp.get_activities() & activiti)
+			sum++;
+	}
+	return sum;
+	file.clear();
 		file.clear();
 		return;
 	}
 }
+
