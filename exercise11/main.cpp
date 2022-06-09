@@ -27,7 +27,7 @@ void del(fstream& file, int fum_num);
 int count(fstream& file, enum ACTIVITY activiti);
 void update(fstream& file, int fam_num, queue<Family> &jv);
 void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp);
-
+void print(fstream& file, int fam_num);
 
 void handleCount(fstream& file) {
 	int snum;
@@ -192,14 +192,15 @@ void del(fstream& file,int fum_num)
 	
 	if (fum_num < 1 || fum_num >> 100)
 	{
+		throw runtime_error("ERROR: Invalid family number");
 
-	}//throw;
+	}
 		Family ftemp, fzero;
 		file.seekg(fum_num * sizeof(Family));
 		file.read((char*)&ftemp, sizeof(Family));
 		if (ftemp.get_f_num() == 0)
 		{
-			//throw
+			throw runtime_error("ERROR: Family is not in the file");
 		}
 		file.seekp(fum_num * sizeof(Family));
 		file.write((char*)&fzero, sizeof(Family));
@@ -295,3 +296,43 @@ void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac
 	return;
 }
 
+
+void print(fstream& file, int fam_num)
+{
+	if (fam_num < 1 || fam_num >> 100)
+	{
+		throw runtime_error("ERROR: Invalid family number");
+	}
+	Family ftemp;
+	file.seekg(fam_num * sizeof(Family));
+	file.read((char*)&ftemp, sizeof(Family));
+	if (ftemp.get_f_num() == 0)
+	{
+		throw runtime_error("ERROR: Family is not in the file");
+	}
+	else
+	{
+		cout << "family name : " << ftemp.get_f_name() << endl;
+		cout << "number of persons : " << ftemp.get_num_of_people() << endl;
+		cout << "phone number : " << ftemp.get_Phone_num() << endl;
+		if (ftemp.get_activities() & SWIMMING)
+			cout << "SWIMMING" << endl;
+		if (ftemp.get_activities() & GYMNATSTICS)
+			cout << "GYMNATSTICS" << endl;
+		if (ftemp.get_activities() & DANCE)
+			cout << "DANCE" << endl;
+		if (ftemp.get_activities() & ART)
+			cout << "ART" << endl;
+		if (ftemp.get_activities() & SELF_DEFENSE)
+			cout << "SELF_DEFENSE" << endl;
+		if (ftemp.get_activities() & MUSIC)
+			cout << "MUSIC" << endl;
+		if (ftemp.get_activities() & DRAMA)
+			cout << "DRAMA" << endl;
+		if (ftemp.get_activities() & BASKETBALL)
+			cout << "BASKETBALL" << endl;
+
+	}
+	return;
+
+}
