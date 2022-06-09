@@ -10,15 +10,15 @@ using namespace std;
 enum { EXIT, ADD, DEL, COUNT, UPDATE, WAITING, PRINT };
 
 enum ACTIVITY {
-	NONE, //  ишн бзш зев
-	SWIMMING,          // щзйд 
-	GYMNATSTICS,         // дътомеъ чшчт
-	DANCE = 4,     // озем
-	ART = 8,    // аеореъ
-	SELF_DEFENSE = 16, // дврд тцойъ
-	MUSIC = 32, // оесйчд
-	DRAMA = 64, // гшод
-	BASKETBALL = 128 // лгеш см
+	NONE, //  ГЁГёГ­ ГЎГ§Гё Г§ГҐГў
+	SWIMMING,          // Г№Г§Г©Г¤ 
+	GYMNATSTICS,         // Г¤ГєГІГ®Г¬ГҐГє Г·ГёГ·ГІ
+	DANCE = 4,     // Г®Г§ГҐГ¬
+	ART = 8,    // Г ГҐГ®Г°ГҐГє
+	SELF_DEFENSE = 16, // Г¤ГўГ°Г¤ ГІГ¶Г®Г©Гє
+	MUSIC = 32, // Г®ГҐГ±Г©Г·Г¤
+	DRAMA = 64, // ГЈГёГ®Г¤
+	BASKETBALL = 128 // Г«ГЈГҐГё Г±Г¬
 };
 
 void setFile(fstream& file);
@@ -172,9 +172,9 @@ void add(fstream& file)
 		}
 		if (ftemp.get_f_num() == 0)
 		{
-			//Family(f_num, f_nam, num_o_p, fhone);
+			Family f1(f_num, f_nam, num_o_p, fhone);
 			file.seekp(f_num * sizeof(Family));
-			file.write((char*)&ftemp, sizeof(Family));
+			file.write((char*)&f1, sizeof(Family));
 			
 		}
 		else
