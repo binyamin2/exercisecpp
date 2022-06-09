@@ -23,8 +23,10 @@ enum ACTIVITY {
 
 void setFile(fstream& file);
 void add(fstream& file);
- void del(fstream& file, int fum_num);
- int count(fstream& file, int activiti);
+void del(fstream& file, int fum_num);
+int count(fstream& file, enum ACTIVITY activiti);
+void update(fstream& file, int fam_num, queue<Family> &jv);
+void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp);
 
 
 void handleCount(fstream& file) {
@@ -143,7 +145,7 @@ void setFile(fstream& file)
 	Family family1;
 	for (int i = 0; i < 100; i++)
 	{
-		file.write((char*)&family1, sizeof(Famliy));
+		file.write((char*)&family1, sizeof(Family));
 	}
 
 	return;
@@ -162,10 +164,6 @@ void add(fstream& file)
 	cin >> f_num >> f_nam >> num_o_p >> fhone;
 	file.seekg(f_num * sizeof(Family));
 	file.read((char*)&ftemp, sizeof(Family));
-	try
-	{
-
-
 		if (ftemp.get_f_num() > 100 || ftemp.get_f_num() < 0)
 		{
 			throw runtime_error("ERROR: Invalid family number");
@@ -181,6 +179,7 @@ void add(fstream& file)
 		{
 			throw runtime_error("ERROR: Family is already in the file");
 		}
+	
 
 
 }
@@ -206,7 +205,7 @@ void del(fstream& file,int fum_num)
 		file.write((char*)&fzero, sizeof(Family));
 		file.clear();
 }
-int count(fstream& file, int activiti)
+int count(fstream& file, enum ACTIVITY activiti)
 {
 	Family ftemp;
 	int sum = 0;
@@ -216,10 +215,83 @@ int count(fstream& file, int activiti)
 		if (ftemp.get_activities() & activiti)
 			sum++;
 	}
-	return sum;
 	file.clear();
-		file.clear();
+	return sum;
+	
+	
+}
+
+void update(fstream& file, int fam_num, queue<Family>& jv)
+{
+
+	if (fam_num < 1 || fam_num >> 100)
+	{
+		throw runtime_error("ERROR: Invalid family number");
+	}
+	Family ftemp;
+	file.seekg(fam_num * sizeof(Family));
+	file.read((char*)&ftemp, sizeof(Family));
+	if (ftemp.get_f_num() == 0)
+	{
+		throw runtime_error("ERROR: Family is not in the file");
+
+	}
+	char answer;
+
+	cout << "Do you want to register for swimming?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, SWIMMING,ftemp);
+	cout << "Do you want to register for gymnastics?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, GYMNATSTICS, ftemp);
+	cout << "Do you want to register for dance?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, DANCE, ftemp);
+	cout << "Do you want to register for art?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, ART, ftemp);
+	cout << "Do you want to register for self defense?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, SELF_DEFENSE, ftemp);
+	cout << "Do you want to register for music?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, MUSIC, ftemp);
+	cout << "Do you want to register for drama?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, DRAMA, ftemp);
+	cout << "Do you want to register for basketball?" << endl;
+	cin >> answer;
+	help_updute(file, jv, answer, BASKETBALL, ftemp);
+
+	file.seekp(fam_num * sizeof(Family));
+	file.write((char*)&ftemp, sizeof(Family));
+	file.clear();
+	return;
+}
+
+void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp)
+{
+	if (answer == 'N' || answer == 'n')
+	{
 		return;
 	}
+	else if(answer == 'Y' || answer == 'y')
+	{
+		if (count(file,ac) < 10) //if have place in the activiti
+		{
+			ftemp.set_activities(ftemp.get_activities() | ac);//or with ac
+		}
+		else//if not have place in the activiti
+		{
+			Family family(ftemp);
+			family.set_activities(family.get_activities() & ac);//change the activitis only to the current "ac"
+			jv.push(family);//push the family with single activiti they want
+		}
+	}
+	else
+	{
+	throw runtime_error("ERROR: Invalid response");
+	}
+	return;
 }
 

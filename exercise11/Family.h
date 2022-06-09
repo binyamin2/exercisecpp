@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 class Family
@@ -22,6 +23,10 @@ public:
 		this->Phone_num = phone_n;
 		this->activities = activities;
 	}
+	Family(Family& family) {
+		this->f_num = family.f_num; strcpy(this->f_name, family.f_name); this->num_of_people = family.num_of_people;
+	this->Phone_num = family.Phone_num; this->activities = family.activities;
+	}//copyctor
 
 	int get_f_num() { return f_num; }
 	char* get_f_name() { return f_name; }
