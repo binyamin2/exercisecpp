@@ -26,7 +26,7 @@ void add(fstream& file);
 void del(fstream& file, int fum_num);
 int count(fstream& file, enum ACTIVITY activiti);
 void update(fstream& file, int fam_num, queue<Family> &jv);
-void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp);
+void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp, Family& family);
 void print(fstream& file, int fam_num);
 
 void handleCount(fstream& file) {
@@ -238,39 +238,43 @@ void update(fstream& file, int fam_num, queue<Family>& jv)
 
 	}
 	char answer;
+	//copy ftemp to family and change the activitis to zero
+	Family family(ftemp);
+	family.set_activities(0);
 
 	cout << "Do you want to register for swimming?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, SWIMMING,ftemp);
+	help_updute(file, jv, answer, SWIMMING,ftemp,family);
 	cout << "Do you want to register for gymnastics?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, GYMNATSTICS, ftemp);
+	help_updute(file, jv, answer, GYMNATSTICS, ftemp, family);
 	cout << "Do you want to register for dance?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, DANCE, ftemp);
+	help_updute(file, jv, answer, DANCE, ftemp, family);
 	cout << "Do you want to register for art?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, ART, ftemp);
+	help_updute(file, jv, answer, ART, ftemp, family);
 	cout << "Do you want to register for self defense?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, SELF_DEFENSE, ftemp);
+	help_updute(file, jv, answer, SELF_DEFENSE, ftemp, family);
 	cout << "Do you want to register for music?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, MUSIC, ftemp);
+	help_updute(file, jv, answer, MUSIC, ftemp, family);
 	cout << "Do you want to register for drama?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, DRAMA, ftemp);
+	help_updute(file, jv, answer, DRAMA, ftemp, family);
 	cout << "Do you want to register for basketball?" << endl;
 	cin >> answer;
-	help_updute(file, jv, answer, BASKETBALL, ftemp);
+	help_updute(file, jv, answer, BASKETBALL, ftemp, family);
 
+	jv.push(family);//push the family with all the activiti they want to register.
 	file.seekp(fam_num * sizeof(Family));
 	file.write((char*)&ftemp, sizeof(Family));
 	file.clear();
 	return;
 }
 
-void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp)
+void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp,Family& family)
 {
 	if (answer == 'N' || answer == 'n')
 	{
@@ -284,9 +288,7 @@ void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac
 		}
 		else//if not have place in the activiti
 		{
-			Family family(ftemp);
-			family.set_activities(family.get_activities() & ac);//change the activitis only to the current "ac"
-			jv.push(family);//push the family with single activiti they want
+			family.set_activities(family.get_activities() | ac);//add to the activitis the bit of "ac"
 		}
 	}
 	else
