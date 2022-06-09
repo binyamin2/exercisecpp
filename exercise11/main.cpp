@@ -159,21 +159,29 @@ void add(fstream& file)
 
 	Family ftemp;
 	cin >> f_num >> f_nam >> num_o_p >> fhone;
-
 	file.seekg(f_num * sizeof(Family));
 	file.read((char*)&ftemp, sizeof(Family));
-	
-	if (ftemp.get_f_num() > 100 ||   )
+	try
 	{
 
+
+		if (ftemp.get_f_num() > 100 || ftemp.get_f_num() < 0)
+		{
+			throw runtime_error("ERROR: Invalid family number");
+		}
+		if (ftemp.get_f_num() == 0)
+		{
+			Family(f_num, f_nam, num_o_p, fhone);
+			file.seekp(f_num * sizeof(Family));
+			file.write((char*)&ftemp, sizeof(Family));
+
+		}
+		else
+		{
+			throw runtime_error("ERROR: Family is already in the file");
+		}
+
+		file.clear();
+		return;
 	}
-	if (ftemp.get_f_num() == 0)
-	{
-
-	}
-	Family(f_num, f_nam, num_o_p, fhone);
-
-
-
-
 }
