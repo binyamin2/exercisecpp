@@ -28,6 +28,8 @@ int count(fstream& file, enum ACTIVITY activiti);
 void update(fstream& file, int fam_num, queue<Family> &jv);
 void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac, Family& ftemp, Family& family);
 void print(fstream& file, int fam_num);
+void printFamily(Family ftemp);
+void waiting(queue<Family>& jv);
 
 void handleCount(fstream& file) {
 	int snum;
@@ -159,10 +161,10 @@ void add(fstream& file)
 	char f_nam[20];
 	int num_o_p;
 	int fhone;
-
+	cout << "enter the family's:  id, name, amount of people and a phone number:" << endl;
 	Family ftemp;
 	cin >> f_num >> f_nam >> num_o_p >> fhone;
-	file.seekg(f_num * sizeof(Family));
+	file.seekg((f_num) * sizeof(Family));
 	file.read((char*)&ftemp, sizeof(Family));
 		if (ftemp.get_f_num() > 100 || ftemp.get_f_num() < 0)
 		{
@@ -170,7 +172,7 @@ void add(fstream& file)
 		}
 		if (ftemp.get_f_num() == 0)
 		{
-			Family(f_num, f_nam, num_o_p, fhone);
+			Family((f_num), f_nam, num_o_p, fhone);
 			file.seekp(f_num * sizeof(Family));
 			file.write((char*)&ftemp, sizeof(Family));
 
@@ -190,19 +192,19 @@ void del(fstream& file,int fum_num)
 {
 	
 	
-	if (fum_num < 1 || fum_num >> 100)
+	if (fum_num < 1 || fum_num > 100)
 	{
 		throw runtime_error("ERROR: Invalid family number");
 
 	}
 		Family ftemp, fzero;
-		file.seekg(fum_num * sizeof(Family));
+		file.seekg((fum_num) * sizeof(Family));
 		file.read((char*)&ftemp, sizeof(Family));
 		if (ftemp.get_f_num() == 0)
 		{
 			throw runtime_error("ERROR: Family is not in the file");
 		}
-		file.seekp(fum_num * sizeof(Family));
+		file.seekp((fum_num) * sizeof(Family));
 		file.write((char*)&fzero, sizeof(Family));
 		file.clear();
 }
@@ -225,7 +227,7 @@ int count(fstream& file, enum ACTIVITY activiti)
 void update(fstream& file, int fam_num, queue<Family>& jv)
 {
 
-	if (fam_num < 1 || fam_num >> 100)
+	if (fam_num < 1 || fam_num > 100)
 	{
 		throw runtime_error("ERROR: Invalid family number");
 	}
@@ -301,12 +303,12 @@ void help_updute(fstream& file, queue<Family>& jv, char answer, enum ACTIVITY ac
 
 void print(fstream& file, int fam_num)
 {
-	if (fam_num < 1 || fam_num >> 100)
+	if (fam_num < 1 || fam_num > 100)
 	{
 		throw runtime_error("ERROR: Invalid family number");
 	}
 	Family ftemp;
-	file.seekg(fam_num * sizeof(Family));
+	file.seekg((fam_num) * sizeof(Family));
 	file.read((char*)&ftemp, sizeof(Family));
 	if (ftemp.get_f_num() == 0)
 	{
@@ -314,27 +316,42 @@ void print(fstream& file, int fam_num)
 	}
 	else
 	{
-		cout << "family name : " << ftemp.get_f_name() << endl;
-		cout << "number of persons : " << ftemp.get_num_of_people() << endl;
-		cout << "phone number : " << ftemp.get_Phone_num() << endl;
-		if (ftemp.get_activities() & SWIMMING)
-			cout << "SWIMMING" << endl;
-		if (ftemp.get_activities() & GYMNATSTICS)
-			cout << "GYMNATSTICS" << endl;
-		if (ftemp.get_activities() & DANCE)
-			cout << "DANCE" << endl;
-		if (ftemp.get_activities() & ART)
-			cout << "ART" << endl;
-		if (ftemp.get_activities() & SELF_DEFENSE)
-			cout << "SELF_DEFENSE" << endl;
-		if (ftemp.get_activities() & MUSIC)
-			cout << "MUSIC" << endl;
-		if (ftemp.get_activities() & DRAMA)
-			cout << "DRAMA" << endl;
-		if (ftemp.get_activities() & BASKETBALL)
-			cout << "BASKETBALL" << endl;
-
+		printFamily(ftemp);
 	}
 	return;
 
 }
+
+void waiting(queue<Family>& jv)
+{
+	queue <Family> qtemp(jv);
+	Family ftemp;
+	while (!qtemp.empty())
+	{
+		ftemp = qtemp.front();
+		printFamily(ftemp);
+		qtemp.pop();
+	}
+}
+void printFamily(Family ftemp)
+{
+	cout << "family name : " << ftemp.get_f_name() << endl;
+	cout << "number of persons : " << ftemp.get_num_of_people() << endl;
+	cout << "phone number : " << ftemp.get_Phone_num() << endl;
+	if (ftemp.get_activities() & SWIMMING)
+		cout << "SWIMMING" << endl;
+	if (ftemp.get_activities() & GYMNATSTICS)
+		cout << "GYMNATSTICS" << endl;
+	if (ftemp.get_activities() & DANCE)
+		cout << "DANCE" << endl;
+	if (ftemp.get_activities() & ART)
+		cout << "ART" << endl;
+	if (ftemp.get_activities() & SELF_DEFENSE)
+		cout << "SELF_DEFENSE" << endl;
+	if (ftemp.get_activities() & MUSIC)
+		cout << "MUSIC" << endl;
+	if (ftemp.get_activities() & DRAMA)
+		cout << "DRAMA" << endl;
+	if (ftemp.get_activities() & BASKETBALL)
+		cout << "BASKETBALL" << endl;
+ }
