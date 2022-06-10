@@ -176,15 +176,16 @@ void add(fstream& file)
 	cout << "enter the family's:  id, name, amount of people and a phone number:" << endl;
 	Family ftemp;
 	cin >> f_num >> f_nam >> num_o_p >> fhone;
-	file.seekg(0);
-	file.seekg((f_num-1) * sizeof(Family));
-	file.read((char*)&ftemp, sizeof(Family));//check if the input is good
+	
+	//check if the input is good
 	if (f_num > 100 || f_num < 1)
 	{
-		fail = true;
 		throw runtime_error("ERROR: Invalid family number\n");
 	}
-	else if (ftemp.get_f_num() == f_num)
+	file.seekg(0);
+	file.seekg((f_num - 1) * sizeof(Family));
+	file.read((char*)&ftemp, sizeof(Family));
+	 if (ftemp.get_f_num() == f_num)
 	{
 		throw runtime_error("ERROR: Family is already in the file\n");
 	}
