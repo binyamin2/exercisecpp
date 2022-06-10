@@ -2,6 +2,17 @@
 #include <iostream>
 #include <cstring>
 
+/*
+binyamin shapira 208965863
+oz asban 207565607.
+
+we make together
+
+course : cadna c++.
+exercise 11
+
+family class      .*/
+
 using namespace std;
 class Family
 {
@@ -12,7 +23,7 @@ class Family
 	short activities;
 
 public:
-	Family()
+	Family()//empty ctor
 	{
 		this->f_num =0;
 		for (int i = 0; i < 20; i++)
@@ -23,7 +34,7 @@ public:
 		this->Phone_num = 0;
 		this->activities = 0;
 	}
-	Family(int f_num , char f_name[] , int num_o_p , int phone_n , short activities=0 )
+	Family(int f_num , char f_name[] , int num_o_p , int phone_n , short activities=0 )//ctor
 	{
 		this->f_num = f_num;
 		for (int i = 0; i < 20; i++)
@@ -34,16 +45,13 @@ public:
 		this->Phone_num = phone_n;
 		this->activities = activities;
 	}
-	/*Family(Family& family) {
-		this->f_num = family.f_num; strcpy(this->f_name, family.f_name); this->num_of_people = family.num_of_people;
-	this->Phone_num = family.Phone_num; this->activities = family.activities;
-	}*///copyctor
 
+	//get and set funcs
 	int get_f_num() { return f_num; }
 	char* get_f_name() { return f_name; }
 	int get_num_of_people() { return num_of_people; }
 	int get_Phone_num() { return Phone_num; }
-	short get_activities() { return  activities; };
+	short get_activities() { return  activities; }
 
 	void set_f_num(int t) { f_num = t; }
 	void set_f_name(char t[]) 
