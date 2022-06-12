@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4a4fd136-653d-4437-912d-cec7f2959c7b}</ProjectGuid>
-    <RootNamespace>exercise91</RootNamespace>
+    <ProjectGuid>{289109de-b972-453d-be46-469e91c55095}</ProjectGuid>
+    <RootNamespace>exercise92</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,14 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Book.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueVector.h" />
     <ClInclude Include="SearchTree.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main1.cpp" />
-    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
